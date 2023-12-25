@@ -1,21 +1,32 @@
 {% extends 'main.html' %} {% block content %}
 
 <style>
-  .cointainer {
+  .home-container {
     display: grid;
-    grid-template-columns: 1fr, 3fr;
+    grid-template-columns: 1fr 3fr;
   }
 </style>
 
 <h1>home template</h1>
 
-<div class="cointainer">
+<div class="home-container">
   <div>
     <h3>Topics</h3>
     <hr />
+
+    <div>
+      <a href="{% url 'home' %}">All</a>
+    </div>
+
+    {% for i in topic %}
+    <div>
+      <a href="{% url 'home' %}?q={{i.name}}">{{i.name}}</a>
+    </div>
+    {% endfor %}
   </div>
 
   <div>
+    <h5>{{room_count}} Rooms Available</h5>
     <a href=" {% url 'create-room' %} ">Create room</a>
     <div>
       {% for i in rooms %}
